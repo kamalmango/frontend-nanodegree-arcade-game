@@ -35,11 +35,22 @@ var Player = function () {
 }
  
 Player.prototype.update = function () {
-   
+    
 }
 
-Player.prototype.handleInput = function() {
-
+Player.prototype.handleInput = function(allowedKeys) {
+    if (allowedKeys === "up") {
+        this.y = this.y - 100;
+    };
+    if (allowedKeys === "down") {
+        this.y = this.y + 100;
+    };
+    if (allowedKeys === "left") {
+        this.x = this.x - 100;
+    };
+    if (allowedKeys === "right") {
+        this.x = this.x + 100;
+    };
 }
 
 Player.prototype.render = function() {
