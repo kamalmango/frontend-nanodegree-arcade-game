@@ -46,11 +46,13 @@ var Player = function () {
 Player.prototype.update = function () {
     if (this.y < 0) {
         this.reset();
+        gem.reset();
     }
 
     for (i in allEnemies){
         if (Math.abs(this.x - allEnemies[i].x) < 50 & Math.abs(this.y-allEnemies[i].y) < 50){
             this.reset();
+            gem.reset();
         }
     }
 }
@@ -80,21 +82,59 @@ Player.prototype.reset = function() {
 }
 
 
+
+
+var Gem = function () {
+    this.xRange = [0, 100, 200, 300, 400];
+    this.yRange = [60, 140, 230];
+    this.x = this.xRange[Math.floor((Math.random() * 5) + 0)];
+    this.y = this.yRange[Math.floor((Math.random() * 3) + 0)];
+    this.sprite = 'images/Gem Blue.png';
+}
+
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
+
+
+
+Gem.prototype.update = function() {
+    if (Math.abs(this.x - player.x) < 50 & Math.abs(this.y-player.y) < 50){
+        this.remove();
+    }  
+}
+
+Gem.prototype.remove = function() {
+    this.x = -100;
+    this.y = -100;
+}
+
+Gem.prototype.reset = function() {
+    this.xRange = [0, 100, 200, 300, 400];
+    this.yRange = [60, 140, 230];
+    this.x = this.xRange[Math.floor((Math.random() * 5) + 0)];
+    this.y = this.yRange[Math.floor((Math.random() * 3) + 0)];
+}
+
+
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+
+var gem = new Gem();
 
 var allEnemies = [];
 for (i = 0; i < 4; i++) {
     allEnemies.push(new Enemy());
 };
 
-/*
-allEnemies = new Array();
-allEnemies.push(new Enemy());
-allEnemies.push(new Enemy());
-*/
+
 var player = new Player();
+
+
+
+
 
 
 // This listens for key presses and sends the keys to your
