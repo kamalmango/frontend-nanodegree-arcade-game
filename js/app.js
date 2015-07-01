@@ -3,9 +3,11 @@
 var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-
+    this.yRange = [60, 145, 230];
     this.x = -100;
-    this.y = 60;
+    this.y = this.yRange[Math.floor((Math.random() * 3) + 0)];
+
+    this.speed = Math.floor((Math.random() * 100) + 50);
     
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -19,7 +21,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x + 50*dt;
+    this.x = this.x + this.speed*dt;
     if (this.x > 500) {
         this.x = -100;
     }    
