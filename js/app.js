@@ -48,11 +48,11 @@ Player.prototype.update = function () {
         this.reset();
     }
 
-    if (Math.abs(this.x - allEnemies[0].x) < 50 & Math.abs(this.y-allEnemies[0].y) < 50){
-        this.reset();
+    for (i in allEnemies){
+        if (Math.abs(this.x - allEnemies[i].x) < 50 & Math.abs(this.y-allEnemies[i].y) < 50){
+            this.reset();
+        }
     }
-    //console.log(this.x);
-    //console.log(allEnemies[0].x);
 }
 
 Player.prototype.handleInput = function(allowedKeys) {
