@@ -7,6 +7,8 @@ The game can be loaded on any of the following browsers:
 - Firefox
 - Safari
 
+Visit my github page https://github.com/kamalmango/frontend-nanodegree-arcade-game and enjoy the app
+
 
 Playing the game:
 - Use the arrows to move the player up, down, left or right

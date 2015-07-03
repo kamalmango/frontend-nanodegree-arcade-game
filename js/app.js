@@ -47,15 +47,17 @@ Player.prototype.update = function () {
         this.reset();
         gem.reset();
     }
-
+    // collision detection by checking if the player is less than 50px away
     for (var i in allEnemies){
         if (Math.abs(this.x - allEnemies[i].x) < 50 && Math.abs(this.y-allEnemies[i].y) < 50){
             this.reset();
             gem.reset();
         }
     }
+    
 };
 
+// player prototype that handles palyer movement by assigning keyboard keys to their respective move
 Player.prototype.handleInput = function(allowedKeys) {
     if (allowedKeys === "up") {
         this.y = this.y - 83;
@@ -75,6 +77,7 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// put the player back where it started
 Player.prototype.reset = function() {
     this.x = 200;
     this.y = 382.5;
@@ -82,9 +85,10 @@ Player.prototype.reset = function() {
 
 //Add Gem
 var Gem = function () {
+    // place the gem in a random position every time the game is reset
     this.xRange = [0, 100, 200, 300, 400];
     this.yRange = [60, 140, 230];
-    this.x = this.xRange[Math.floor((Math.random() * 5) + 0)];
+    this.x = this.xRange[Math.floor((Math.random() * 5) + 0)]; 
     this.y = this.yRange[Math.floor((Math.random() * 3) + 0)];
     this.sprite = 'images/Gem Blue.png';
 };
@@ -94,11 +98,13 @@ Gem.prototype.render = function() {
 };
 
 Gem.prototype.update = function() {
+    // collision detection with player and gem
     if (Math.abs(this.x - player.x) < 50 && Math.abs(this.y-player.y) < 50){
         this.remove();
     }  
 };
 
+// make the gem disappear after the player grabs it
 Gem.prototype.remove = function() {
     this.x = -100;
     this.y = -100;
@@ -118,6 +124,7 @@ Gem.prototype.reset = function() {
 var gem = new Gem();
 
 var allEnemies = [];
+// add enemeis to the allEnemies array
 for (i = 0; i < 4; i++) {
     allEnemies.push(new Enemy());
 }
